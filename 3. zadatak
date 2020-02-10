@@ -32,11 +32,11 @@ int main() {
 	print(head);
 
 	removeChosen(head);
-	printf("Lista: \n");
+	printf("Lista bez izbora: \n");
 	print(head); 
 
-	//removeDuplicates(head);
-	printf("Lista: \n");
+	removeDuplicates(head);
+	printf("Lista bez duplikata: \n");
 	print(head);
 
 
@@ -81,28 +81,33 @@ void removeChosen(position head) { //NERADI KAD JE JEDAN IZA DRUGOG
 	printf("What number do you want to eliminate?: ");
 	scanf(" %d", &unos);
 
-	while (head != NULL) {
+	while (head != NULL && head->next != NULL) {
 		if (head->next->el == unos) {
 			temp = head->next;
 			head->next = temp->next;
-			free(temp);			
+			free(temp);
 		}
-		head = head->next;
+		else
+		{
+			head = head->next;
+		}
 	}
 }
+
 void removeDuplicates(position head) {
 	position p = NULL;
 	position temp = NULL;
-	p = head->next;
 	head = head->next;
-	while (head != NULL) {
-		while (p != NULL) {
+	while (head != NULL ) {
+		p = head;
+		while (p->next!=NULL) {
 			if (head->el == p->next->el) {
 				temp = p->next;
 				p->next = temp->next;
 				free(temp);
 			}
-			p = p->next;
+			else
+				p = p->next;
 		}
 		head = head->next;
 	}
