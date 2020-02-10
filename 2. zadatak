@@ -1,0 +1,75 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct cvor* position;
+typedef struct cvor {
+	int el;
+
+	position next;
+}Cvor;
+
+position createNode(); 
+int randomNumber(int min, int max);
+void inputIntoList(position head, int broj);
+void print(position p);
+
+int main() {
+	srand(time(0));
+	position head = createNode();
+	position head2 = createNode();
+	int niz[20];
+	int niz2[20];
+
+
+	for (int i = 0;i < 20;i++) {
+		niz[i] = randomNumber(120, 100);
+		inputIntoList(head, niz[i]);
+	}
+
+	for (int i = 0;i < 20;i++) {
+		niz2[i] = niz[19-i];
+		inputIntoList(head2, niz2[i]);
+	}
+
+	printf("Lista: \n");
+	print(head);
+
+	printf("Lista2: \n");
+	print(head2);
+	system("PAUSE");
+	return 0;
+}
+position createNode() {
+	position q = NULL;
+	q = (position)malloc(sizeof(Cvor));
+	if (q == NULL) {
+		printf("Nije se uspilo allocirat!");
+		return NULL;
+	}
+	q->next = NULL;
+	return q;
+}
+int randomNumber(int min, int max) {
+	return rand() % (max + 1 - min) + min;
+}
+
+void inputIntoList(position head, int broj) {
+	position p = createNode();
+	while (head->next != NULL) {
+		head = head->next;
+	}
+	p->el = broj;
+	p->next = NULL;
+	head->next = p;
+}
+
+void print(position p)
+{
+	p = p->next;
+
+	while (p != NULL)
+	{
+		printf("%d\n", p->el);
+		p = p->next;
+	}
+}
