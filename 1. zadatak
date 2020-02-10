@@ -100,3 +100,4 @@ void readFile(position head,int broj) {
 	ispisliste(head);
 	fclose(fp);
 }
+
