@@ -1,0 +1,25 @@
+void sortiranje(position head)
+{
+	position prev_j, j, i, end = NULL;
+	end = NULL;
+	while (head->next != end)
+	{
+		i = head;
+		prev_j = i->next;
+		j = prev_j->next;
+		while (j != end)
+		{
+			if (_strcmpi(prev_j->prez, j->prez) > 0)
+			{
+				prev_j->next = j->next;
+				j->next = prev_j;
+				i->next = j;
+			}
+			i = prev_j;
+			prev_j = j;
+			j = j->next;
+
+		}
+		end = prev_j;
+	}
+}
