@@ -1,0 +1,11 @@
+position createNode() {
+	position q = NULL;
+	q = (position)malloc(sizeof(Cvor));
+	if (q == NULL) {
+		printf("Allocation unsucesfull!");
+		return NULL;
+	}
+	q->next = NULL;
+	q->el = 0;
+	return q;
+}
