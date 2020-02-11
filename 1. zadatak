@@ -38,8 +38,6 @@ int main() {
 
 
 
-	fclose(fp1);
-	fclose(fp2);
 	system("PAUSE");
 	return 0;
 }
@@ -61,7 +59,7 @@ position createNode() {
 }
 
 void insertEnd(position head, position p) {
-	while (head->next!=NULL) {
+	while (head->next != NULL) {
 		head = head->next;
 	}
 	head->next = p;
@@ -69,7 +67,8 @@ void insertEnd(position head, position p) {
 }
 
 void ispisliste(position head) {
-	while (head->next != NULL) {
+	head = head->next;
+	while (head != NULL) {
 		printf("%d\n", head->el);
 		head = head->next;
 	}
@@ -77,10 +76,10 @@ void ispisliste(position head) {
 }
 
 
-void readFile(position head,int broj) {
+void readFile(position head, int broj) {
 	FILE* fp = NULL;
 	position s = NULL;
-	if(broj==1)
+	if (broj == 1)
 		fp = fopen("prvaDatoteka.txt", "r");
 	else
 		fp = fopen("drugaDatoteka.txt", "r");
@@ -93,11 +92,11 @@ void readFile(position head,int broj) {
 
 	while (!feof(fp)) {
 		s = createNode();
-		fscanf(fp, "%d\n", s->el);																										
+		fscanf(fp, "%d\n", &(s->el));
 
 		insertEnd(head, s);
 	}
 	ispisliste(head);
+
 	fclose(fp);
 }
-
