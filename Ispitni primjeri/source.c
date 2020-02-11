@@ -1,3 +1,5 @@
+//https://ibb.co/JCLgVSt
+
 #include<stdio.h>
 #include<stdlib.h>
 
@@ -12,13 +14,13 @@ typedef struct cvor {
 }Cvor;
 
 //Deklaracija funckija
-
 position createNode();
 void readFile(position head);
 void ispisListe(position head);
 int randomNumber(int min, int max);
 void insert(position head, position p);
 void izbrisiSve(position head);
+void sort(position head);
 
 //--------------------------
 
@@ -57,6 +59,7 @@ void readFile(position head) {
 		fscanf(fp,"%d %s %s", &(temp->brojIndexa), &(temp->ime), &(temp->prezime));
 		insert(head, temp);
 	}
+	sort(head);
 	ispisListe(head);
 
 	fclose(fp);
@@ -93,5 +96,31 @@ void izbrisiSve(position head)
 		temp = head->next;
 		head->next = temp->next;
 		free(temp);
+	}
+}
+
+void sort(position head)
+{
+	position prev_j, j, i, end = NULL;
+	end = NULL;
+	while (head->next != end)
+	{
+		i = head;
+		prev_j = i->next;
+		j = prev_j->next;
+		while (j != end)
+		{
+			if (_strcmpi(prev_j->prezime, j->prezime) > 0)
+			{
+				prev_j->next = j->next;
+				j->next = prev_j;
+				i->next = j;
+			}
+			i = prev_j;
+			prev_j = j;
+			j = j->next;
+
+		}
+		end = prev_j;
 	}
 }
