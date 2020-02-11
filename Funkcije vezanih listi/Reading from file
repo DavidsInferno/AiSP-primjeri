@@ -1,0 +1,16 @@
+void readFile(position head, int broj) {
+	FILE* fp = NULL;
+  
+	fp = fopen("prvaDatoteka.txt", "r");
+
+	if (fp == NULL) {
+		printf("nije se otvorilo");
+		return;
+	}
+
+	while (!feof(fp)) {
+		fscanf(fp, "%d\n", &el);
+
+	}
+	fclose(fp);
+}
