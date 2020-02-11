@@ -1,0 +1,96 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct cvor* position;
+typedef struct cvor {
+	int brojIndexa;
+	char ime[200];
+	char prezime[200];
+	int orderNum;
+
+	position next;
+}Cvor;
+
+//Deklaracija funckija
+position createNode();
+void readFile(position head);
+void ispisListe(position head);
+int randomNumber(int min, int max);
+void insert(position head, position p);
+void izbrisiSve(position head);
+
+//--------------------------
+
+int main() {
+	srand(time(0));
+	position head = createNode();
+
+	readFile(head);
+	izbrisiSve(head);
+
+	system("PAUSE");
+	return 0;
+}
+
+position createNode() {
+	position q = NULL;
+	q = (position)malloc(sizeof(Cvor));
+	if (q == NULL) {
+		printf("Memory allocation nyet");
+		return NULL;
+	}
+	q->next = NULL;
+	return q;
+}
+
+void readFile(position head) {
+	position temp;
+	FILE* fp = fopen("popisStudenata.txt", "r");
+	if (fp == NULL) {
+		printf("File could not open");
+		return NULL;
+	}
+	while (!feof(fp)) {
+		temp = createNode();
+		temp->orderNum = randomNumber(1, 15);
+		fscanf(fp,"%d %s %s", &(temp->brojIndexa), &(temp->ime), &(temp->prezime));
+		insert(head, temp);
+	}
+	ispisListe(head);
+
+	fclose(fp);
+}
+
+void insert(position head, position p) {
+	while (head->next != NULL)
+		head = head->next;
+	head->next = p;
+	p->next = NULL;
+}
+
+int randomNumber(int min, int max) {
+	return rand() % (max + 1 - min) + min;
+}
+
+void ispisListe(position head) {
+	if (head->next != NULL)
+		head=head->next;
+	else
+		return NULL;
+
+	while (head != NULL) {
+		printf("Broj indexa: %d\tIme:%s\tPrezime:%s\tOrder number:%d\n", head->brojIndexa, head->ime, head->prezime, head->orderNum);
+		head = head->next;
+	}
+}
+
+void izbrisiSve(position head)
+{
+	position temp = NULL;
+	while (head->next != NULL)
+	{
+		temp = head->next;
+		head->next = temp->next;
+		free(temp);
+	}
+}
