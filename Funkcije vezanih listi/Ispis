@@ -1,0 +1,7 @@
+void ispisliste(position head) {
+	head = head->next;
+	while (head!= NULL) {
+		printf("%d\n", head->el);
+		head = head->next;
+	}
+}
