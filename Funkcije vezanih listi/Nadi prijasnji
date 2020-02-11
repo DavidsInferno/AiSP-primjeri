@@ -1,0 +1,8 @@
+position findPrev(position head, position target)
+{
+	while (head->next != target)
+	{
+		head = head->next;
+	}
+	return head;
+}
