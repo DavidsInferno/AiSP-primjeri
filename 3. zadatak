@@ -8,7 +8,7 @@ typedef struct cvor {
 	position next;
 }Cvor;
 
-position createNode(); 
+position createNode();
 int randomNumber(int min, int max);
 void inputIntoList(position head, int broj);
 void print(position p);
@@ -22,7 +22,7 @@ int main() {
 
 
 	for (int i = 0;i < 20;i++) {
-		niz[i] = randomNumber(10,20);
+		niz[i] = randomNumber(10, 20);
 		inputIntoList(head, niz[i]);
 	}
 
@@ -33,7 +33,7 @@ int main() {
 
 	removeChosen(head);
 	printf("Lista bez izbora: \n");
-	print(head); 
+	print(head);
 
 	removeDuplicates(head);
 	printf("Lista bez duplikata: \n");
@@ -75,7 +75,7 @@ void print(position p)
 		p = p->next;
 	}
 }
-void removeChosen(position head) { //NERADI KAD JE JEDAN IZA DRUGOG
+void removeChosen(position head) {
 	position temp = NULL;
 	int unos = 0;
 	printf("What number do you want to eliminate?: ");
@@ -98,9 +98,9 @@ void removeDuplicates(position head) {
 	position p = NULL;
 	position temp = NULL;
 	head = head->next;
-	while (head != NULL ) {
+	while (head != NULL) {
 		p = head;
-		while (p->next!=NULL) {
+		while (p->next != NULL) {
 			if (head->el == p->next->el) {
 				temp = p->next;
 				p->next = temp->next;
