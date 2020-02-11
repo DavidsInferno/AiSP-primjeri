@@ -1,0 +1,104 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct cvor* position;
+typedef struct cvor {
+	char rijeci[20];
+
+	position next;
+}Cvor;
+
+position createNode(); 
+void insert(position head, position p);
+void readFromFile(position head);
+void printList(position head);
+void uzimanjeSuglasnike(position head, position head2);
+int imaSamoglasnika(position head);
+
+int main() {
+	position head = createNode();
+	position head2 = createNode();
+
+	readFromFile(head);
+
+	uzimanjeSuglasnike(head, head2);
+
+	system("PAUSE");
+	return 0;
+}
+
+void readFromFile(position head) {
+	FILE* fp = NULL;
+	position temp = NULL;
+
+	fp = fopen("recenica.txt", "r");
+	if (fp == NULL) {
+		printf("Nije se uspilo otvorit");
+		return 0;
+	}
+
+	while (!feof(fp))
+	{
+		temp = createNode();
+		fscanf(fp, "%s", &(temp->rijeci));
+		insert(head, temp);
+	}
+	
+	printList(head);
+	fclose(fp);
+
+}
+
+void printList(position head) {
+	if (head->next != NULL)
+		head = head->next;
+	while (head != NULL) {
+		printf("%s\n", head->rijeci);
+		head = head->next;
+	}
+}
+
+void insert(position head, position p) {
+	while (head->next != NULL) {
+		head = head->next;
+	}
+	head->next = p;
+	p->next = NULL;
+
+}
+
+position createNode() {
+	position q = NULL;
+	q = (position)malloc(sizeof(Cvor));
+	if (q == NULL){
+		printf("Allocation unsucsesful");
+		return NULL;
+	}
+	q->next = NULL;
+}
+
+void uzimanjeSuglasnike(position head, position head2) {
+	head = head->next;
+	position temp = NULL;
+	while (head != NULL) {
+		if (imaSamoglasnika(head)==0 ) {
+			temp = createNode();
+			strcpy(temp->rijeci, head->rijeci);
+			insert(head2, temp);
+		}
+		head = head->next;
+	}
+	printf("Samo sa suglasnicima rici:\n");
+	printList(head2);
+}
+
+int imaSamoglasnika(position head) {
+	char samoglasnici[5] = { 'a','e','i','o','u' };
+
+	for (int i = 0;i < 5;i++) {
+		if (tolower(head->rijeci[0]) == samoglasnici[i])
+			return 1;
+	}
+	return 0;
+
+}
