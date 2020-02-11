@@ -1,0 +1,10 @@
+void izbrisiSve(position head)
+{
+	position temp = NULL;
+	while (head->next != NULL)
+	{
+		temp = head->next;
+		head->next = temp->next;
+		free(temp);
+	}
+}
