@@ -1,0 +1,8 @@
+position findLast(position head)
+{
+	while (head->next != NULL)
+	{
+		head = head->next;
+	}
+	return head;
+}
