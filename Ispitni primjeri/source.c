@@ -12,6 +12,7 @@ typedef struct cvor {
 }Cvor;
 
 //Deklaracija funckija
+
 position createNode();
 void readFile(position head);
 void ispisListe(position head);
