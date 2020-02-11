@@ -1,0 +1,16 @@
+void sortiranjePoGodini(position head) {
+	position i, j = NULL;
+	int temp = 0;
+	i = head;
+	j = head->next;
+
+	for (i = head; i != NULL; i = i->next) {
+		for (j = i->next; j != NULL; j = j->next) {
+			if (i->god > j->god) {
+				temp = i->god;
+				i->god = j->god;
+				j->god = temp;
+			}
+		}
+	}
+}
