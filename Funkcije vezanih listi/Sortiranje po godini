@@ -1,8 +1,6 @@
 void sortiranjePoGodini(position head) {
 	position i, j = NULL;
 	int temp = 0;
-	i = head;
-	j = head->next;
 
 	for (i = head; i != NULL; i = i->next) {
 		for (j = i->next; j != NULL; j = j->next) {
