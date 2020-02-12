@@ -1,0 +1,106 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef struct cvor*position;
+typedef struct cvor {
+	char rijeci[20];
+
+	position next;
+}Cvor;
+
+//DEKLARACIJA F-JA
+position createNode();
+void readFile(position head);
+void nadodavanjeUListu(position head, position p);
+void ispisListe(position head);
+void obrnutiRedoslijed(position head, position headRev);
+void insertBeggining(position head, position p);
+
+//________________________
+
+
+int main() {
+	position head = createNode();
+	position headRev = createNode();
+
+	if (head == NULL)
+		return 0;
+
+	readFile(head);
+	obrnutiRedoslijed(head, headRev);
+
+
+	ispisListe(head);
+	printf("\n\n\nOvo je obrnuta lista:\n");
+	ispisListe(headRev);
+
+	system("PAUSE");
+	return 0;
+}
+
+position createNode() {
+	position q = NULL;
+	q = (position)malloc(sizeof(Cvor));
+	if (q == NULL) {
+		printf("Allocation unsucsefull");
+		return NULL;
+	}
+	q->rijeci == ".";
+	q->next = NULL;
+
+	return q;
+}
+
+void readFile(position head) {
+	FILE *fp = fopen("lista.txt", "r");
+	position temp = NULL;
+	if (fp == NULL) {
+		printf("Nemoze se otvorit file");
+		return;
+	}
+
+	while (!feof(fp)) {
+		temp = createNode();
+		fscanf(fp, "%s", &(temp->rijeci));
+		nadodavanjeUListu(head, temp);
+	}
+}
+
+void nadodavanjeUListu(position head, position p) {
+	if (head->next != NULL)
+		head = head->next;
+
+	while (head->next != NULL) {
+		head = head->next;
+	}
+	p->next = head->next;
+	head->next = p;
+}
+
+void ispisListe(position head) {
+	if (head->next != NULL)
+		head = head->next;
+	while (head->next != NULL) {
+		printf("%s\n", head->rijeci);
+		head = head->next;
+	}
+}
+
+void obrnutiRedoslijed(position head, position headRev) {
+	position temp =NULL;
+	if (head->next == NULL)
+		head = head->next;
+
+	while (head != NULL) {
+		temp = createNode();
+		strcpy(temp->rijeci, head->rijeci);
+		insertBeggining(headRev, temp);
+		head = head->next;
+	}
+}
+
+void insertBeggining(position head,position p) {
+	position temp = NULL;
+	p->next = head->next;
+	head->next = p;
+}
