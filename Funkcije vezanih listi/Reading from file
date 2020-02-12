@@ -9,7 +9,7 @@ void readFile(position head, int broj) {
 	}
 
 	while (!feof(fp)) {
-		fscanf(fp, "%d\n", &el);
+		fscanf(fp, "%d\n", &(head->el);
 
 	}
 	fclose(fp);
