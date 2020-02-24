@@ -1,0 +1,9 @@
+void insertsort(position p, position s)
+{
+	while (p->next != NULL && strcmp(p->next->prez, s->prez) < 0)
+	{
+		p = p->next;
+	}
+	s->next = p->next;
+	p->next = s;
+}
