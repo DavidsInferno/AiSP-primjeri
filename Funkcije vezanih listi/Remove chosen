@@ -1,0 +1,18 @@
+void removeChosen(position head) {
+	position temp = NULL;
+	int unos = 0;
+	printf("What number do you want to eliminate?: ");
+	scanf(" %d", &unos);
+
+	while (head != NULL && head->next != NULL) {
+		if (head->next->el == unos) {
+			temp = head->next;
+			head->next = temp->next;
+			free(temp);
+		}
+		else
+		{
+			head = head->next;
+		}
+	}
+}
