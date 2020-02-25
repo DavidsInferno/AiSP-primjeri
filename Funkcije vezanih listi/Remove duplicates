@@ -1,0 +1,18 @@
+void removeDuplicates(position head) {
+	position p = NULL;
+	position temp = NULL;
+	head = head->next;
+	while (head != NULL) {
+		p = head;
+		while (p->next != NULL) {
+			if (head->el == p->next->el) {
+				temp = p->next;
+				p->next = temp->next;
+				free(temp);
+			}
+			else
+				p = p->next;
+		}
+		head = head->next;
+	}
+}
