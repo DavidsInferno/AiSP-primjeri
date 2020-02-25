@@ -1,0 +1,9 @@
+void inputIntoList(position head, int broj) {
+	position p = createNode();
+	while (head->next != NULL) {
+		head = head->next;
+	}
+	p->el = broj;
+	p->next = NULL;
+	head->next = p;
+}
