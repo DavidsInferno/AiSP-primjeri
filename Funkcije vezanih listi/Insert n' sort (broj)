@@ -1,0 +1,9 @@
+void insertAndSort(position head, int broj) {
+	position p = createNode();
+	while (head->next != NULL && broj >= head->next->el) {
+		head = head->next;
+	}
+	p->next = head->next;
+	head->next=p;
+	p->el=broj;
+}
