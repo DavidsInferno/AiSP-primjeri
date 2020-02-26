@@ -1,0 +1,6 @@
+void removeNextNode(position head) {
+	position temp = NULL;
+	temp = head->next;
+	head->next = temp->next;
+	free(temp);
+}
