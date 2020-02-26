@@ -1,0 +1,57 @@
+void Unija(Position L1, Position L2, Position U){ //-----UNIJA-----------------------
+	Position q, tmp;
+	int tmp_element = 0;
+
+	while (L1 != NULL && L2 != NULL)
+	{
+		if (L1->Element > L2->Element)
+		{
+			tmp_element = L1->Element;
+			L1 = L1->Next;
+		}
+		else if (L1->Element < L2->Element)
+		{
+			tmp_element = L2->Element;
+			L2 = L2->Next;
+		}
+		else
+		{
+			tmp_element = L1->Element;
+			L1 = L1->Next;
+			L2 = L2->Next;
+		}
+
+		q = (Position)malloc(sizeof(Cvor));
+		if (q == NULL)
+			printf("\r\nGreska!\r\nMemorija nije alocirana.");
+		else
+		{
+			q->Element = tmp_element;
+			q->Next = U->Next;
+			U->Next = q;
+			U = q;
+		}
+	}
+
+	if (L1 == NULL)
+		tmp = L2;
+	else
+		tmp = L1;
+
+	while (tmp != NULL)
+	{
+		q = (Position)malloc(sizeof(Cvor));
+		if (q == NULL)
+			printf("\r\nGreska!\r\nMemorija nije alocirana.");
+		else
+		{
+			q->Element = tmp->Element;
+
+			q->Next = U->Next;
+			U->Next = q;
+
+			U = q;
+		}
+		tmp = tmp->Next;
+	}
+}
