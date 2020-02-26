@@ -1,0 +1,28 @@
+void uzimanjeSuglasnike(position head, position head2) {
+	head = head->next;
+	position temp = NULL;
+	while (head != NULL) {
+		if (imaSamoglasnika(head)==0 ) {
+			temp = createNode();
+			strcpy(temp->rijeci, head->rijeci);
+			insert(head2, temp);
+		}
+		head = head->next;
+	}
+	printf("Samo sa suglasnicima rici:\n");
+	printList(head2);
+}
+
+
+
+
+
+int imaSamoglasnika(position head) {
+	char samoglasnici[5] = { 'a','e','i','o','u' };
+
+	for (int i = 0;i < 5;i++) {
+		if (tolower(head->rijeci[0]) == samoglasnici[i])
+			return 1;
+	}
+	return 0;
+}
