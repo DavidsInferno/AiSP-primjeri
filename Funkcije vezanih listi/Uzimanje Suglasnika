@@ -1,4 +1,4 @@
-void uzimanjeSuglasnike(position head, position head2) {
+void uzimanjeSuglasnike(position head, position head2) { //head2 je ime liste bez suglasnika
 	head = head->next;
 	position temp = NULL;
 	while (head != NULL) {
