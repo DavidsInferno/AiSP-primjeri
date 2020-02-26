@@ -1,16 +1,21 @@
-void readFile(position head, int broj) {
+void readFromFile(position head) {
 	FILE* fp = NULL;
-  
-	fp = fopen("prvaDatoteka.txt", "r");
+	position temp = NULL;
 
+	fp = fopen("recenica.txt", "r");
 	if (fp == NULL) {
-		printf("nije se otvorilo");
-		return;
+		printf("Nije se uspilo otvorit");
+		return 0;
 	}
 
-	while (!feof(fp)) {
-		fscanf(fp, "%d\n", &(head->el);
-
+	while (!feof(fp))
+	{
+		temp = createNode();
+		fscanf(fp, "%s", &(temp->rijeci));
+		insert(head, temp);
 	}
+	
+	printList(head);
 	fclose(fp);
+
 }
