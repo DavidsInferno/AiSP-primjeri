@@ -1,0 +1,26 @@
+void Presjek(Position L1, Position L2, Position P){
+	Position q;
+
+	while (L1 != NULL && L2 != NULL)	{
+		if (L1->Element > L2->Element)
+			L1 = L1->Next;
+		else if (L1->Element < L2->Element)
+			L2 = L2->Next;
+		else
+		{
+			q = (Position)malloc(sizeof(Cvor));
+			if (q == NULL)
+				printf("\r\nGreska!\r\nMemorija nije alocirana.");
+			else
+			{
+				q->Element = L1->Element;
+				q->Next = P->Next;
+				P->Next = q;
+				P = q;
+			}
+			L1 = L1->Next;
+			L2 = L2->Next;
+		}	
+ }	
+ 
+}
